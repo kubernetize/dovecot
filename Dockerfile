@@ -1,10 +1,8 @@
-FROM alpine:3.16
+FROM ghcr.io/kubernetize/alpine-service-base
 
 LABEL maintainer="Richard Kojedzinszky <richard@kojedz.in>"
 
 RUN \
-    apk --no-cache add gettext dovecot dovecot-lmtpd dovecot-mysql dovecot-pgsql
+    apk --no-cache add dovecot dovecot-lmtpd dovecot-mysql dovecot-pgsql
 
-COPY assets/ /
-
-CMD ["/usr/local/sbin/dovecot.sh"]
+CMD ["/usr/sbin/dovecot", "-F"]
